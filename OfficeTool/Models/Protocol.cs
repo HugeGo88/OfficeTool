@@ -109,4 +109,10 @@ public partial class ActionPoint : ObservableObject
     /// </summary>
     [ObservableProperty]
     private DateTimeOffset _dueDate;
+
+    /// <summary>
+    /// Whether the task is completed
+    /// </summary>
+    [ObservableProperty]
+    private bool _isCompleted;
 }

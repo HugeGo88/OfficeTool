@@ -188,8 +188,9 @@ public partial class ProtocolViewModel : ObservableRecipient
                             ? $" - {actionPoint.Person}" 
                             : string.Empty;
                         var dueDateText = $" (Due: {actionPoint.DueDate:yyyy-MM-dd})";
+                        var checkbox = actionPoint.IsCompleted ? "[x]" : "[ ]";
 
-                        sb.AppendLine($"- {taskText}{personText}{dueDateText}");
+                        sb.AppendLine($"- {checkbox} {taskText}{personText}{dueDateText}");
                     }
 
                     sb.AppendLine();
