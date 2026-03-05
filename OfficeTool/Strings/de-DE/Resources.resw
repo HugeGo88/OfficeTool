@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppDisplayName" xml:space="preserve">
+    <value>OfficeTool</value>
+  </data>
+  <data name="AppDescription" xml:space="preserve">
+    <value>OfficeTool</value>
+  </data>
+  <data name="Shell_Writer.Content" xml:space="preserve">
+    <value>Schreiber</value>
+  </data>
+  <data name="Shell_Start.Content" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Shell_Blank.Content" xml:space="preserve">
+    <value>Leer</value>
+  </data>
+  <data name="AppNotificationSamplePayload" xml:space="preserve">
+    <value>&lt;toast launch="action=ToastClick"&gt;
+  &lt;visual&gt;
+    &lt;binding template="ToastGeneric"&gt;
+      &lt;text&gt;App-Benachrichtigung&lt;/text&gt;
+      &lt;text&gt;&lt;/text&gt;
+      &lt;image placement="appLogoOverride" hint-crop="circle" src="{0}Assets/WindowIcon.ico"/&gt;
+    &lt;/binding&gt;
+  &lt;/visual&gt;
+  &lt;actions&gt;
+    &lt;action content="Einstellungen" arguments="action=Settings"/&gt;
+  &lt;/actions&gt;
+&lt;/toast&gt;</value>
+  </data>
+  <data name="Settings_Personalization.Text" xml:space="preserve">
+    <value>Personalisierung</value>
+  </data>
+  <data name="Settings_Theme.Text" xml:space="preserve">
+    <value>Design</value>
+  </data>
+  <data name="Settings_Theme_Light.Content" xml:space="preserve">
+    <value>Hell</value>
+  </data>
+  <data name="Settings_Theme_Dark.Content" xml:space="preserve">
+    <value>Dunkel</value>
+  </data>
+  <data name="Settings_Theme_Default.Content" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="Settings_About.Text" xml:space="preserve">
+    <value>Über diese Anwendung</value>
+  </data>
+  <data name="Settings_AboutDescription.Text" xml:space="preserve">
+    <value>TODO: Durch Ihre App-Beschreibung ersetzen.</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
+    <value>Datenschutzerklärung</value>
+  </data>
+  <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
+    <value>https://YourPrivacyUrlGoesHere/</value>
+  </data>
+  <data name="Members_NoSelection.Text" xml:space="preserve">
+    <value>Wählen Sie ein Element aus der Liste aus.</value>
+  </data>
+  <data name="Shell_Members.Content" xml:space="preserve">
+    <value>Mitglieder</value>
+  </data>
+  <data name="Shell_Protocol.Content" xml:space="preserve">
+    <value>Protokoll</value>
+  </data>
+  <data name="WriterView_LoadButton.Label" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="WriterView_CreateButton.Label" xml:space="preserve">
+    <value>PDF erstellen</value>
+  </data>
+  <data name="Protocol_PageTitle.Text" xml:space="preserve">
+    <value>Besprechungsprotokoll</value>
+  </data>
+  <data name="Protocol_NewProtocol.Content" xml:space="preserve">
+    <value>Neues Protokoll</value>
+  </data>
+  <data name="Protocol_Subject.Header" xml:space="preserve">
+    <value>Betreff</value>
+  </data>
+  <data name="Protocol_Subject.PlaceholderText" xml:space="preserve">
+    <value>Besprechungsthema eingeben</value>
+  </data>
+  <data name="Protocol_MeetingDate.Header" xml:space="preserve">
+    <value>Besprechungsdatum</value>
+  </data>
+  <data name="Protocol_Attendees.Header" xml:space="preserve">
+    <value>Teilnehmer</value>
+  </data>
+  <data name="Protocol_Attendees.PlaceholderText" xml:space="preserve">
+    <value>Personen, die an der Besprechung teilgenommen haben (durch Komma getrennt)</value>
+  </data>
+  <data name="Protocol_Absentees.Header" xml:space="preserve">
+    <value>Konnten nicht teilnehmen</value>
+  </data>
+  <data name="Protocol_Absentees.PlaceholderText" xml:space="preserve">
+    <value>Personen, die nicht teilnehmen konnten (durch Komma getrennt)</value>
+  </data>
+  <data name="Protocol_Excused.Header" xml:space="preserve">
+    <value>Entschuldigt</value>
+  </data>
+  <data name="Protocol_Excused.PlaceholderText" xml:space="preserve">
+    <value>Entschuldigte Personen (durch Komma getrennt)</value>
+  </data>
+  <data name="Protocol_MeetingTopics.Text" xml:space="preserve">
+    <value>Besprechungsthemen</value>
+  </data>
+  <data name="Protocol_TopicTitle.PlaceholderText" xml:space="preserve">
+    <value>Thementitel (optional)</value>
+  </data>
+  <data name="Protocol_TopicContent.PlaceholderText" xml:space="preserve">
+    <value>Themeninhalt im Markdown-Format eingeben...</value>
+  </data>
+  <data name="Protocol_MarkdownHelp.Text" xml:space="preserve">
+    <value>Unterstützt Markdown: **fett**, *kursiv*, # Überschrift, - Aufzählungspunkte, etc.</value>
+  </data>
+  <data name="Protocol_ActionPoints.Text" xml:space="preserve">
+    <value>Maßnahmen</value>
+  </data>
+  <data name="Protocol_AddActionPoint.Text" xml:space="preserve">
+    <value>Maßnahme hinzufügen</value>
+  </data>
+  <data name="Protocol_Task.Header" xml:space="preserve">
+    <value>Aufgabe</value>
+  </data>
+  <data name="Protocol_Task.PlaceholderText" xml:space="preserve">
+    <value>Aufgabenbeschreibung eingeben</value>
+  </data>
+  <data name="Protocol_Person.Header" xml:space="preserve">
+    <value>Person</value>
+  </data>
+  <data name="Protocol_Person.PlaceholderText" xml:space="preserve">
+    <value>Verantwortliche Person</value>
+  </data>
+  <data name="Protocol_DueDate.Header" xml:space="preserve">
+    <value>Fälligkeitsdatum</value>
+  </data>
+  <data name="Protocol_AddTopic.Text" xml:space="preserve">
+    <value>Thema hinzufügen</value>
+  </data>
+  <data name="Writer_PageTitle.Text" xml:space="preserve">
+    <value>Markdown-Editor</value>
+  </data>
+  <data name="Writer_Preview.Text" xml:space="preserve">
+    <value>Vorschau</value>
+  </data>
+  <data name="Writer_IncludeHeader.Content" xml:space="preserve">
+    <value>Kopfzeile einbeziehen</value>
+  </data>
+  <data name="Writer_CustomDate.Content" xml:space="preserve">
+    <value>Benutzerdefiniertes Datum</value>
+  </data>
+  <data name="Writer_IncludeSignature.Content" xml:space="preserve">
+    <value>Unterschrift einbeziehen</value>
+  </data>
+  <data name="Writer_Company.Header" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="Writer_Company.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{COMPANY}} in Markdown</value>
+  </data>
+  <data name="Writer_Name.Header" xml:space="preserve">
+    <value>Vorname</value>
+  </data>
+  <data name="Writer_Name.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{NAME}} in Markdown</value>
+  </data>
+  <data name="Writer_LastName.Header" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="Writer_LastName.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{LASTNAME}} in Markdown</value>
+  </data>
+  <data name="Writer_Address.Header" xml:space="preserve">
+    <value>Adresse</value>
+  </data>
+  <data name="Writer_Address.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{ADDRESS}} in Markdown</value>
+  </data>
+  <data name="Writer_City.Header" xml:space="preserve">
+    <value>Stadt</value>
+  </data>
+  <data name="Writer_City.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{CITY}} in Markdown</value>
+  </data>
+  <data name="Writer_Date.Header" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Writer_Date.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{DATE}} in Markdown</value>
+  </data>
+  <data name="Writer_Subject.Header" xml:space="preserve">
+    <value>Betreff</value>
+  </data>
+  <data name="Writer_Subject.PlaceholderText" xml:space="preserve">
+    <value>Verwenden Sie {{SUBJECT}} in Markdown</value>
+  </data>
+  <data name="Writer_MarkdownText.PlaceholderText" xml:space="preserve">
+    <value>Markdown-Text hier eingeben...</value>
+  </data>
+  <data name="WriterView_LoadButton.Label" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="WriterView_SaveButton.Text" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="WriterView_SaveAs.Text" xml:space="preserve">
+    <value>Speichern unter</value>
+  </data>
+  <data name="WriterView_CreateButton.Label" xml:space="preserve">
+    <value>PDF erstellen</value>
+  </data>
+  <data name="WriterView_DelteButton.Label" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Members_Status.Text" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Members_OrderDate.Text" xml:space="preserve">
+    <value>Bestelldatum</value>
+  </data>
+  <data name="Members_Company.Text" xml:space="preserve">
+    <value>Firma</value>
+  </data>
+  <data name="Members_ShipTo.Text" xml:space="preserve">
+    <value>Versand an</value>
+  </data>
+  <data name="Members_OrderTotal.Text" xml:space="preserve">
+    <value>Bestellsumme</value>
+  </data>
+  <data name="Members_Note1.Text" xml:space="preserve">
+    <value>Notiz 1</value>
+  </data>
+  <data name="Members_Note2.Text" xml:space="preserve">
+    <value>Notiz 2</value>
+  </data>
+</root>

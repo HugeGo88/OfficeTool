@@ -1,0 +1,304 @@
+﻿<Page
+    x:Class="OfficeTool.Views.ProtocolPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:OfficeTool.Models"
+    mc:Ignorable="d">
+
+    <Grid x:Name="ContentArea">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalAlignment="Stretch">
+            <StackPanel Spacing="16" MaxWidth="1600" HorizontalAlignment="Center" Margin="0,0,0,24">
+                <!-- Header Section -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock 
+                        Grid.Column="0"
+                        x:Uid="Protocol_PageTitle"
+                        Style="{StaticResource PageTitleStyle}"/>
+
+                    <Button 
+                        Grid.Column="1"
+                        x:Uid="Protocol_NewProtocol"
+                        Command="{x:Bind ViewModel.NewProtocolCommand}"/>
+                </Grid>
+
+                <!-- Meeting Information Form -->
+                <Border 
+                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                    BorderThickness="1"
+                    CornerRadius="8"
+                    Padding="16">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="16"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Subject -->
+                        <TextBox 
+                            Grid.Row="0" 
+                            Grid.Column="0"
+                            x:Uid="Protocol_Subject"
+                            Text="{x:Bind ViewModel.CurrentProtocol.Subject, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Date -->
+                        <DatePicker 
+                            Grid.Row="0" 
+                            Grid.Column="2"
+                            x:Uid="Protocol_MeetingDate"
+                            Date="{x:Bind ViewModel.CurrentProtocol.MeetingDate, Mode=TwoWay}"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Attendees -->
+                        <TextBox 
+                            Grid.Row="1" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3"
+                            x:Uid="Protocol_Attendees"
+                            Text="{x:Bind ViewModel.CurrentProtocol.Attendees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="80"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Absentees -->
+                        <TextBox 
+                            Grid.Row="2" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3"
+                            x:Uid="Protocol_Absentees"
+                            Text="{x:Bind ViewModel.CurrentProtocol.Absentees, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="60"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Excused -->
+                        <TextBox 
+                            Grid.Row="3" 
+                            Grid.Column="0" 
+                            Grid.ColumnSpan="3"
+                            x:Uid="Protocol_Excused"
+                            Text="{x:Bind ViewModel.CurrentProtocol.Excused, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="60"
+                            Margin="0,0,0,0"/>
+                    </Grid>
+                </Border>
+
+                <!-- Meeting Topics Section -->
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Section Header -->
+                    <TextBlock 
+                        Grid.Row="0"
+                        x:Uid="Protocol_MeetingTopics"
+                        Style="{StaticResource SubtitleTextBlockStyle}"
+                        Margin="0,0,0,12"/>
+
+                    <!-- Topics List -->
+                    <ItemsControl 
+                        Grid.Row="1"
+                        x:Name="TopicsItemsControl"
+                        ItemsSource="{x:Bind ViewModel.CurrentProtocol.Topics, Mode=OneWay}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate x:DataType="models:ProtocolTopic">
+                                <Border 
+                                    Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                                    BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                    BorderThickness="1"
+                                    CornerRadius="8"
+                                    Padding="16"
+                                    Margin="0,0,0,12">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!-- Topic Header -->
+                                        <Grid Grid.Row="0" Margin="0,0,0,12">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock 
+                                                Grid.Column="0"
+                                                Text="{x:Bind Number, Mode=OneWay}"
+                                                FontSize="18"
+                                                FontWeight="SemiBold"
+                                                VerticalAlignment="Center"
+                                                Margin="0,0,12,0"/>
+
+                                            <TextBox 
+                                                Grid.Column="1"
+                                                x:Uid="Protocol_TopicTitle"
+                                                Text="{x:Bind Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                BorderThickness="0"
+                                                Background="Transparent"
+                                                VerticalAlignment="Center"/>
+
+                                            <Button 
+                                                Grid.Column="2"
+                                                Click="DeleteTopicButton_Click"
+                                                Tag="{x:Bind}"
+                                                Background="Transparent"
+                                                BorderThickness="0">
+                                                <FontIcon Glyph="&#xE74D;" FontSize="16" Foreground="{ThemeResource SystemErrorTextColor}"/>
+                                            </Button>
+                                        </Grid>
+
+                                        <!-- Markdown Editor -->
+                                        <TextBox 
+                                            Grid.Row="1"
+                                            x:Uid="Protocol_TopicContent"
+                                            Text="{x:Bind Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                            AcceptsReturn="True"
+                                            TextWrapping="Wrap"
+                                            Height="200"
+                                            ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                            FontFamily="Consolas"/>
+
+                                        <!-- Markdown Help Text -->
+                                        <TextBlock 
+                                            Grid.Row="2"
+                                            x:Uid="Protocol_MarkdownHelp"
+                                            FontSize="11"
+                                            Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                            Margin="0,8,0,0"/>
+
+                                        <!-- Action Points Section -->
+                                        <StackPanel Grid.Row="3" Margin="0,16,0,0">
+                                            <!-- Action Points Header -->
+                                            <Grid Margin="0,0,0,8">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock 
+                                                    Grid.Column="0"
+                                                    x:Uid="Protocol_ActionPoints"
+                                                    FontWeight="SemiBold"
+                                                    FontSize="14"
+                                                    VerticalAlignment="Center"/>
+
+                                                <Button 
+                                                    Grid.Column="1"
+                                                    Click="AddActionPointButton_Click"
+                                                    Tag="{x:Bind}"
+                                                    Background="Transparent"
+                                                    BorderThickness="1">
+                                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                                        <FontIcon Glyph="&#xE710;" FontSize="14"/>
+                                                        <TextBlock x:Uid="Protocol_AddActionPoint" FontSize="12"/>
+                                                    </StackPanel>
+                                                </Button>
+                                            </Grid>
+
+                                            <!-- Action Points List -->
+                                            <ItemsControl ItemsSource="{x:Bind ActionPoints, Mode=OneWay}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate x:DataType="models:ActionPoint">
+                                                        <Border 
+                                                            Background="{ThemeResource CardBackgroundFillColorSecondaryBrush}"
+                                                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                                                            BorderThickness="1"
+                                                            CornerRadius="4"
+                                                            Padding="12"
+                                                            Margin="0,0,0,8">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="2*"/>
+                                                                    <ColumnDefinition Width="12"/>
+                                                                    <ColumnDefinition Width="*"/>
+                                                                    <ColumnDefinition Width="12"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                    <ColumnDefinition Width="12"/>
+                                                                    <ColumnDefinition Width="Auto"/>
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <!-- Task -->
+                                                                <TextBox 
+                                                                    Grid.Column="0"
+                                                                    x:Uid="Protocol_Task"
+                                                                    Text="{x:Bind Task, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                    AcceptsReturn="False"/>
+
+                                                                <!-- Person -->
+                                                                <TextBox 
+                                                                    Grid.Column="2"
+                                                                    x:Uid="Protocol_Person"
+                                                                    Text="{x:Bind Person, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                                                <!-- Due Date -->
+                                                                <DatePicker 
+                                                                    Grid.Column="4"
+                                                                    x:Uid="Protocol_DueDate"
+                                                                    Date="{x:Bind DueDate, Mode=TwoWay}"/>
+
+                                                                <!-- Delete Button -->
+                                                                <Button 
+                                                                    Grid.Column="6"
+                                                                    Click="DeleteActionPointButton_Click"
+                                                                    Tag="{x:Bind}"
+                                                                    Background="Transparent"
+                                                                    BorderThickness="0"
+                                                                    VerticalAlignment="Bottom"
+                                                                    Margin="0,0,0,4">
+                                                                    <FontIcon Glyph="&#xE74D;" FontSize="14" Foreground="{ThemeResource SystemErrorTextColor}"/>
+                                                                </Button>
+                                                            </Grid>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </StackPanel>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                    <!-- Add Topic Button (Bottom) -->
+                    <Button 
+                        Grid.Row="2"
+                        HorizontalAlignment="Stretch"
+                        Command="{x:Bind ViewModel.AddTopicCommand}"
+                        Margin="0,12,0,0">
+                        <StackPanel Orientation="Horizontal" Spacing="8">
+                            <FontIcon Glyph="&#xE710;" FontSize="16"/>
+                            <TextBlock x:Uid="Protocol_AddTopic"/>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

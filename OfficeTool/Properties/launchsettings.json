@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "OfficeTool (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "OfficeTool (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
