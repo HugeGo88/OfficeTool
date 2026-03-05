@@ -126,6 +126,9 @@
   <data name="Protocol_PageTitle.Text" xml:space="preserve">
     <value>Meeting Protocol</value>
   </data>
+  <data name="Protocol_ExportMarkdown.Content" xml:space="preserve">
+    <value>Export as Markdown</value>
+  </data>
   <data name="Protocol_NewProtocol.Content" xml:space="preserve">
     <value>New Protocol</value>
   </data>

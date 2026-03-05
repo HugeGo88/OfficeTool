@@ -132,6 +132,9 @@
   <data name="Protocol_PageTitle.Text" xml:space="preserve">
     <value>Besprechungsprotokoll</value>
   </data>
+  <data name="Protocol_ExportMarkdown.Content" xml:space="preserve">
+    <value>Als Markdown exportieren</value>
+  </data>
   <data name="Protocol_NewProtocol.Content" xml:space="preserve">
     <value>Neues Protokoll</value>
   </data>
