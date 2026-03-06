@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
+using OfficeTool.Contracts.Services;
 using OfficeTool.ViewModels;
 using OfficeTool.Models;
 
@@ -16,6 +17,12 @@ public sealed partial class ProtocolPage : Page
     {
         ViewModel = App.GetService<ProtocolViewModel>();
         InitializeComponent();
+
+        PdfWebView.Loaded += (s, e) =>
+        {
+            var pdfExportService = App.GetService<IPdfExportService>();
+            pdfExportService.RegisterWebView(PdfWebView);
+        };
     }
 
     private void DeleteTopicButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

@@ -16,9 +16,14 @@ public class PdfExportService : Contracts.Services.IPdfExportService
 
     public async Task<bool> ExportToPdfAsync(string htmlContent, string suggestedFileName)
     {
-        if (_webView?.CoreWebView2 == null)
+        if (_webView == null)
         {
             return false;
+        }
+
+        if (_webView.CoreWebView2 == null)
+        {
+            await _webView.EnsureCoreWebView2Async();
         }
 
         var picker = new FileSavePicker();
@@ -37,6 +42,16 @@ public class PdfExportService : Contracts.Services.IPdfExportService
 
         try
         {
+            var tcs = new TaskCompletionSource<bool>();
+            void Handler(CoreWebView2 s, CoreWebView2NavigationCompletedEventArgs e)
+            {
+                _webView.CoreWebView2.NavigationCompleted -= Handler;
+                tcs.SetResult(e.IsSuccess);
+            }
+            _webView.CoreWebView2.NavigationCompleted += Handler;
+            _webView.NavigateToString(htmlContent);
+            await tcs.Task;
+
             var printSettings = _webView.CoreWebView2.Environment.CreatePrintSettings();
             printSettings.ShouldPrintBackgrounds = true;
             printSettings.ShouldPrintHeaderAndFooter = false;
