@@ -51,6 +51,27 @@
                 </StackPanel>
             </StackPanel>
 
+            <TextBlock x:Uid="Settings_PdfStyling" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,24,0,0" />
+            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
+                <TextBlock x:Uid="Settings_PdfStyling_Description" Margin="0,0,0,8" />
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="0,0,0,8">
+                    <Button
+                        x:Uid="Settings_PdfStyling_LoadCss"
+                        Command="{x:Bind ViewModel.LoadCssFromFileCommand}" />
+                    <Button
+                        x:Uid="Settings_PdfStyling_ClearCss"
+                        Command="{x:Bind ViewModel.ClearCustomCssCommand}" />
+                </StackPanel>
+                <TextBox
+                    x:Uid="Settings_PdfStyling_CustomCss"
+                    Text="{x:Bind ViewModel.CustomCss, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    Height="200"
+                    FontFamily="Consolas"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto" />
+            </StackPanel>
+
             <TextBlock x:Uid="Settings_About" Style="{ThemeResource SubtitleTextBlockStyle}" />
 
             <StackPanel Margin="{StaticResource XSmallTopMargin}">

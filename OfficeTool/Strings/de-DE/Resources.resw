@@ -102,6 +102,24 @@
   <data name="Settings_Theme_Default.Content" xml:space="preserve">
     <value>Standard</value>
   </data>
+  <data name="Settings_PdfStyling.Text" xml:space="preserve">
+    <value>PDF-Export Gestaltung</value>
+  </data>
+  <data name="Settings_PdfStyling_Description.Text" xml:space="preserve">
+    <value>Passen Sie das CSS an, das beim PDF-Export verwendet wird. Leer lassen für den Standard-Stil.</value>
+  </data>
+  <data name="Settings_PdfStyling_LoadCss.Content" xml:space="preserve">
+    <value>CSS aus Datei laden</value>
+  </data>
+  <data name="Settings_PdfStyling_ClearCss.Content" xml:space="preserve">
+    <value>Auf Standard zurücksetzen</value>
+  </data>
+  <data name="Settings_PdfStyling_CustomCss.Header" xml:space="preserve">
+    <value>Benutzerdefiniertes CSS</value>
+  </data>
+  <data name="Settings_PdfStyling_CustomCss.PlaceholderText" xml:space="preserve">
+    <value>Benutzerdefiniertes CSS eingeben oder aus Datei laden...</value>
+  </data>
   <data name="Settings_About.Text" xml:space="preserve">
     <value>Über diese Anwendung</value>
   </data>

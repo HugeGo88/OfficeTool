@@ -68,6 +68,7 @@ public partial class App : Application
             services.AddSingleton<IPageService, PageService>();
             services.AddSingleton<INavigationService, NavigationService>();
             services.AddSingleton<IPdfExportService, PdfExportService>();
+            services.AddSingleton<ICssStyleService, CssStyleService>();
 
             // Core Services
             services.AddSingleton<ISampleDataService, SampleDataService>();
@@ -109,6 +110,7 @@ public partial class App : Application
 
         App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
 
+        await App.GetService<ICssStyleService>().InitializeAsync();
         await App.GetService<IActivationService>().ActivateAsync(args);
     }
 }
