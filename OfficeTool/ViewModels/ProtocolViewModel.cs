@@ -1,11 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using System.Text;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Markdig;
 using OfficeTool.Attributes;
 using OfficeTool.Contracts.Services;
 using OfficeTool.Models;
-using System.Linq;
-using System.Text;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 
@@ -65,8 +64,8 @@ public partial class ProtocolViewModel : ObservableRecipient
     [RelayCommand]
     private void RemoveActionPoint(object[] parameters)
     {
-        if (parameters != null && parameters.Length == 2 
-            && parameters[0] is ProtocolTopic topic 
+        if (parameters != null && parameters.Length == 2
+            && parameters[0] is ProtocolTopic topic
             && parameters[1] is ActionPoint actionPoint)
         {
             if (topic.ActionPoints.Contains(actionPoint))
@@ -113,8 +112,8 @@ public partial class ProtocolViewModel : ObservableRecipient
 
         picker.SuggestedStartLocation = PickerLocationId.DocumentsLibrary;
         picker.FileTypeChoices.Add("Markdown Document", new List<string> { ".md" });
-        picker.SuggestedFileName = string.IsNullOrWhiteSpace(CurrentProtocol.Subject) 
-            ? $"Protocol_{CurrentProtocol.MeetingDate:yyyy-MM-dd}" 
+        picker.SuggestedFileName = string.IsNullOrWhiteSpace(CurrentProtocol.Subject)
+            ? $"Protocol_{CurrentProtocol.MeetingDate:yyyy-MM-dd}"
             : CurrentProtocol.Subject;
 
         var file = await picker.PickSaveFileAsync();
@@ -142,88 +141,90 @@ public partial class ProtocolViewModel : ObservableRecipient
 
     private string GenerateMarkdown()
     {
-        var sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        // Header section
-        if (!string.IsNullOrWhiteSpace(CurrentProtocol.Subject))
-        {
-            sb.AppendLine($"# {CurrentProtocol.Subject}");
-            sb.AppendLine();
-        }
+        // Header similar to the Excel template
+        string subject = !string.IsNullOrWhiteSpace(CurrentProtocol.Subject)
+            ? CurrentProtocol.Subject
+            : "-";
 
-        // Meeting date
-        sb.AppendLine($"**Meeting Date:** {CurrentProtocol.MeetingDate:dddd, MMMM d, yyyy}");
+        sb.AppendLine($"# Protokoll: {subject}");
         sb.AppendLine();
 
-        // Attendees
-        if (!string.IsNullOrWhiteSpace(CurrentProtocol.Attendees))
-        {
-            sb.AppendLine("## Attendees");
-            sb.AppendLine(CurrentProtocol.Attendees);
-            sb.AppendLine();
-        }
+        // Date in German style
+        sb.AppendLine($"**Datum:** {CurrentProtocol.MeetingDate:dd.MM.yyyy}");
+        sb.AppendLine();
 
-        // Absentees
-        if (!string.IsNullOrWhiteSpace(CurrentProtocol.Absentees))
-        {
-            sb.AppendLine("## Absentees");
-            sb.AppendLine(CurrentProtocol.Absentees);
-            sb.AppendLine();
-        }
+        // Personenblock angelehnt an die Vorlage
+        string attendees = !string.IsNullOrWhiteSpace(CurrentProtocol.Attendees)
+            ? CurrentProtocol.Attendees
+            : "-";
+        string absentees = !string.IsNullOrWhiteSpace(CurrentProtocol.Absentees)
+            ? CurrentProtocol.Absentees
+            : "-";
+        string excused = !string.IsNullOrWhiteSpace(CurrentProtocol.Excused)
+            ? CurrentProtocol.Excused
+            : "-";
 
-        // Excused
-        if (!string.IsNullOrWhiteSpace(CurrentProtocol.Excused))
-        {
-            sb.AppendLine("## Excused");
-            sb.AppendLine(CurrentProtocol.Excused);
-            sb.AppendLine();
-        }
+        sb.AppendLine($"**Teilnehmer:** {attendees}");
+        sb.AppendLine();
+        sb.AppendLine($"**Abwesend:** {absentees}");
+        sb.AppendLine();
+        sb.AppendLine($"**Entschuldigt:** {excused}");
+        sb.AppendLine();
+        sb.AppendLine("**Sitzungsleitung:** -");
+        sb.AppendLine();
+        sb.AppendLine("**Protokolant:in:** -");
+        sb.AppendLine();
 
-        // Topics and action points
+
+        // Themen- und Aufgaben-Tabelle angelehnt an die Excel-Struktur
         if (CurrentProtocol.Topics.Count > 0)
         {
-            sb.AppendLine("## Meeting Topics");
-            sb.AppendLine();
+            sb.AppendLine("| # | Thema |");
+            sb.AppendLine("|---|-------|");
 
-            foreach (var topic in CurrentProtocol.Topics)
+            foreach (ProtocolTopic topic in CurrentProtocol.Topics)
             {
-                sb.AppendLine($"### Topic {topic.Number}");
+                string topicTitle = !string.IsNullOrWhiteSpace(topic.Title)
+                    ? topic.Title
+                    : "-";
 
-                if (!string.IsNullOrWhiteSpace(topic.Title))
+                string contentMarkdown = !string.IsNullOrWhiteSpace(topic.Content)
+                    ? topic.Content
+                    : string.Empty;
+
+                string contentHtml = string.Empty;
+                if (!string.IsNullOrEmpty(contentMarkdown))
                 {
-                    sb.AppendLine($"**Title:** {topic.Title}");
-                    sb.AppendLine();
+                    // Convert markdown content to HTML so it can be embedded inside the table cell
+                    contentHtml = Markdown.ToHtml(contentMarkdown, _markdownPipeline)
+;
                 }
 
-                if (!string.IsNullOrWhiteSpace(topic.Content))
+                sb.AppendLine($"| **{topic.Number}** | **{topicTitle}** |");
+
+                if (!string.IsNullOrEmpty(contentHtml))
                 {
-                    sb.AppendLine(topic.Content);
-                    sb.AppendLine();
+                    sb.AppendLine($"|   | {contentHtml} |");
                 }
 
-                // Action points for this topic
-                if (topic.ActionPoints.Count > 0)
-                {
-                    sb.AppendLine("#### Action Points");
-                    sb.AppendLine();
+                //foreach (ActionPoint actionPoint in topic.ActionPoints)
+                //{
+                //    string taskText = !string.IsNullOrWhiteSpace(actionPoint.Task)
+                //        ? actionPoint.Task
+                //        : baseTopicTitle;
+                //    string personText = !string.IsNullOrWhiteSpace(actionPoint.Person)
+                //        ? actionPoint.Person
+                //        : string.Empty;
+                //    string dueDateText = actionPoint.DueDate.ToString("dd.MM.yyyy");
+                //    string statusText = actionPoint.IsCompleted ? "[x]" : "[ ]";
 
-                    foreach (var actionPoint in topic.ActionPoints)
-                    {
-                        var taskText = !string.IsNullOrWhiteSpace(actionPoint.Task) 
-                            ? actionPoint.Task 
-                            : "(No description)";
-                        var personText = !string.IsNullOrWhiteSpace(actionPoint.Person) 
-                            ? $" - {actionPoint.Person}" 
-                            : string.Empty;
-                        var dueDateText = $" (Due: {actionPoint.DueDate:yyyy-MM-dd})";
-                        var checkbox = actionPoint.IsCompleted ? "[x]" : "[ ]";
-
-                        sb.AppendLine($"- {checkbox} {taskText}{personText}{dueDateText}");
-                    }
-
-                    sb.AppendLine();
-                }
+                //    sb.AppendLine($"| {topic.Number} | {taskText} | {personText} | {dueDateText} | {statusText} |");
+                //}
             }
+
+            sb.AppendLine();
         }
 
         return sb.ToString();
