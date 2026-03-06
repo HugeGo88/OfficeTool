@@ -57,6 +57,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -114,6 +116,26 @@
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
                             Height="60"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Meeting Lead / Sitzungsleitung -->
+                        <TextBox
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            x:Uid="Protocol_MeetingLead"
+                            Text="{x:Bind ViewModel.CurrentProtocol.MeetingLead, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="Wrap"
+                            Margin="0,0,0,12"/>
+
+                        <!-- Recorder / Protokolant:in -->
+                        <TextBox
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            x:Uid="Protocol_Recorder"
+                            Text="{x:Bind ViewModel.CurrentProtocol.Recorder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            TextWrapping="Wrap"
                             Margin="0,0,0,0"/>
                     </Grid>
                 </Border>

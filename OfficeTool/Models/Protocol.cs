@@ -43,6 +43,34 @@ public partial class Protocol : ObservableObject
     private string _excused = string.Empty;
 
     /// <summary>
+    /// Person leading the meeting
+    /// </summary>
+    private string _meetingLead = string.Empty;
+
+    /// <summary>
+    /// Person recording the minutes of the meeting
+    /// </summary>
+    private string _recorder = string.Empty;
+
+    /// <summary>
+    /// Person leading the meeting
+    /// </summary>
+    public string MeetingLead
+    {
+        get => _meetingLead;
+        set => SetProperty(ref _meetingLead, value);
+    }
+
+    /// <summary>
+    /// Person recording the minutes of the meeting
+    /// </summary>
+    public string Recorder
+    {
+        get => _recorder;
+        set => SetProperty(ref _recorder, value);
+    }
+
+    /// <summary>
     /// Collection of meeting topics/points
     /// </summary>
     public ObservableCollection<ProtocolTopic> Topics

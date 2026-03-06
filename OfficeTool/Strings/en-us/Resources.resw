@@ -180,6 +180,18 @@
   <data name="Protocol_Excused.PlaceholderText" xml:space="preserve">
     <value>Excused persons (comma separated)</value>
   </data>
+  <data name="Protocol_MeetingLead.Header" xml:space="preserve">
+    <value>Chair</value>
+  </data>
+  <data name="Protocol_MeetingLead.PlaceholderText" xml:space="preserve">
+    <value>Name of the person chairing the meeting</value>
+  </data>
+  <data name="Protocol_Recorder.Header" xml:space="preserve">
+    <value>Minute taker</value>
+  </data>
+  <data name="Protocol_Recorder.PlaceholderText" xml:space="preserve">
+    <value>Name of the person recording the minutes</value>
+  </data>
   <data name="Protocol_MeetingTopics.Text" xml:space="preserve">
     <value>Meeting Topics</value>
   </data>

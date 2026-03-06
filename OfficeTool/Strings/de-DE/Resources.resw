@@ -186,6 +186,18 @@
   <data name="Protocol_Excused.PlaceholderText" xml:space="preserve">
     <value>Entschuldigte Personen (durch Komma getrennt)</value>
   </data>
+  <data name="Protocol_MeetingLead.Header" xml:space="preserve">
+    <value>Sitzungsleitung</value>
+  </data>
+  <data name="Protocol_MeetingLead.PlaceholderText" xml:space="preserve">
+    <value>Name der Sitzungsleitung</value>
+  </data>
+  <data name="Protocol_Recorder.Header" xml:space="preserve">
+    <value>Protokollant:in</value>
+  </data>
+  <data name="Protocol_Recorder.PlaceholderText" xml:space="preserve">
+    <value>Name der Protokoll führenden Person</value>
+  </data>
   <data name="Protocol_MeetingTopics.Text" xml:space="preserve">
     <value>Besprechungsthemen</value>
   </data>

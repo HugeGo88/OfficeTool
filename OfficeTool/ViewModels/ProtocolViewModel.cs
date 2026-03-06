@@ -165,6 +165,12 @@ public partial class ProtocolViewModel : ObservableRecipient
         string excused = !string.IsNullOrWhiteSpace(CurrentProtocol.Excused)
             ? CurrentProtocol.Excused
             : "-";
+        string meetingLead = !string.IsNullOrWhiteSpace(CurrentProtocol.MeetingLead)
+            ? CurrentProtocol.MeetingLead
+            : "-";
+        string recorder = !string.IsNullOrWhiteSpace(CurrentProtocol.Recorder)
+            ? CurrentProtocol.Recorder
+            : "-";
 
         sb.AppendLine($"**Teilnehmer:** {attendees}");
         sb.AppendLine();
@@ -172,9 +178,9 @@ public partial class ProtocolViewModel : ObservableRecipient
         sb.AppendLine();
         sb.AppendLine($"**Entschuldigt:** {excused}");
         sb.AppendLine();
-        sb.AppendLine("**Sitzungsleitung:** -");
+        sb.AppendLine($"**Sitzungsleitung:** {meetingLead}");
         sb.AppendLine();
-        sb.AppendLine("**Protokolant:in:** -");
+        sb.AppendLine($"**Protokolant:in:** {recorder}");
         sb.AppendLine();
 
 
