@@ -148,11 +148,7 @@ public partial class ProtocolViewModel : ObservableRecipient
             ? CurrentProtocol.Subject
             : "-";
 
-        sb.AppendLine($"# Protokoll: {subject}");
-        sb.AppendLine();
-
-        // Date in German style
-        sb.AppendLine($"**Datum:** {CurrentProtocol.MeetingDate:dd.MM.yyyy}");
+        sb.AppendLine($"# {subject} - {CurrentProtocol.MeetingDate:dd.MM.yyyy}");
         sb.AppendLine();
 
         // Personenblock angelehnt an die Vorlage
@@ -178,9 +174,7 @@ public partial class ProtocolViewModel : ObservableRecipient
         sb.AppendLine();
         sb.AppendLine($"**Entschuldigt:** {excused}");
         sb.AppendLine();
-        sb.AppendLine($"**Sitzungsleitung:** {meetingLead}");
-        sb.AppendLine();
-        sb.AppendLine($"**Protokolant:in:** {recorder}");
+        sb.AppendLine($"**Sitzungsleitung:** {meetingLead} **Protokolant:in:** {recorder}");
         sb.AppendLine();
 
 
@@ -204,7 +198,7 @@ public partial class ProtocolViewModel : ObservableRecipient
                 if (!string.IsNullOrEmpty(contentMarkdown))
                 {
                     // Convert markdown content to HTML so it can be embedded inside the table cell
-                    contentHtml = Markdown.ToHtml(contentMarkdown, _markdownPipeline)
+                    contentHtml = Markdown.ToHtml(contentMarkdown.TrimEnd(), _markdownPipeline)
 ;
                 }
 
@@ -215,22 +209,18 @@ public partial class ProtocolViewModel : ObservableRecipient
                     sb.AppendLine($"|   | {contentHtml} |");
                 }
 
-                //foreach (ActionPoint actionPoint in topic.ActionPoints)
-                //{
-                //    string taskText = !string.IsNullOrWhiteSpace(actionPoint.Task)
-                //        ? actionPoint.Task
-                //        : baseTopicTitle;
-                //    string personText = !string.IsNullOrWhiteSpace(actionPoint.Person)
-                //        ? actionPoint.Person
-                //        : string.Empty;
-                //    string dueDateText = actionPoint.DueDate.ToString("dd.MM.yyyy");
-                //    string statusText = actionPoint.IsCompleted ? "[x]" : "[ ]";
+                foreach (ActionPoint actionPoint in topic.ActionPoints)
+                {
+                    string taskText = actionPoint.Task;
+                    string personText = !string.IsNullOrWhiteSpace(actionPoint.Person)
+                        ? actionPoint.Person
+                        : string.Empty;
+                    string dueDateText = actionPoint.DueDate.ToString("dd.MM.yyyy");
+                    string statusText = actionPoint.IsCompleted ? "[x]" : "[ ]";
 
-                //    sb.AppendLine($"| {topic.Number} | {taskText} | {personText} | {dueDateText} | {statusText} |");
-                //}
+                    sb.AppendLine($"| | {statusText} {taskText} {personText} {dueDateText}|");
+                }
             }
-
-            sb.AppendLine();
         }
 
         return sb.ToString();
